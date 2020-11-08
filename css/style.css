@@ -1,0 +1,248 @@
+:root { /* se almacenará en la parte principal del proyecto */
+    --oscuro: #212121;
+    --primario: #ffc107;
+    --secundario: #0097a7;
+    --gris: #757575;
+
+    --anchoPantalla: 120rem;
+}
+
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+    box-sizing: border-box;
+    min-height: 100%; /* esto hace que el FONDO del BODY se estire y tome todo el tamaño disponible en la altura */
+    font-size: 62.5%; /* Esto hace que un REM sea 10px */
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    font-family: 'Krub', sans-serif;
+    font-size: 1.6rem; /* esto hace que la letra tenga 16px aprox, depende del dispositivo con el que se vea el sitio. Va en conjunto con el font-size del HTML {} */
+}
+
+img {
+    width: 100%;
+}
+
+h1, h2, h3 {
+    margin: 0;
+}
+
+h2, h3 {
+    text-align: center;
+}
+
+h3 {
+    color: var(--secundario);
+    font-weight: 400;
+    font-size: 3rem;
+}
+
+p {
+    font-size: 1.8rem;
+    line-height: 2;
+}
+/* --------------------------------------------------------------------------- */
+
+
+.site-header {
+    background-color: white;
+}
+
+.site-header nav {
+    /* para centrar la barra de navegacion/header */
+    max-width: var(--anchoPantalla);
+    margin: 0 auto;
+    padding: 2rem 0; /* Los REMS te permite crear sitios web responsivos, pues no depende de los pixeles */
+
+    display: flex;
+    flex-direction: column; /* ROW es el default. flex-direction cambia la direccion de los flex, de filas a columnas */
+    align-items: center; /* centra elementos de FLEXBOX */
+
+}
+
+@media (min-width: 768px) {
+    .site-header nav {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+}
+
+.site-header nav a {
+    color: var(--oscuro); /*para acceder a las variables del CUSTOME PROPERTIE del ROOT, usamos "var()" y dentro del paréntesis el nombre del CUSTOME PROPERTIE */
+    font-size: 2.2rem;
+    text-decoration: none;
+    margin-bottom: 2rem;
+}
+
+.site-header nav a:last-of-type {
+    margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+    .site-header nav a {
+        margin-bottom: 0;
+    }
+    
+}
+
+
+
+.hero { /* PADRE */
+    height: 45rem;
+    background-image: url(../img/hero.jpg);
+    position: relative; /* el PADRE lleva RELATIVE siempre */
+    display: flex;
+    justify-content: center; /* su orientacion depende de si FLEX-DIRECTION. si usas ROW o COLUMN, dependiendo, justify-content y align-items se invierten su ORIENTACION */
+    align-items: center;
+}
+
+.hero::after { /* pseudo HIJO */
+    content: ''; /* si vas a poner color de fondo este atributo va VACIO */
+    background-color: rgba(0,0,0, .7); /* el .7 es la TRANSPARENCIA, por eso es rgbA */
+    position: absolute; /*el HIJO es ABSOLUTE */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.contenedor-hero {
+   color: white;
+   position: relative; /* esta y la siguiente línea, hará que el contenedor-hero venga hasta arriba, hasta enfrente */
+   z-index: 1; 
+   text-align: center;
+}
+
+.contenedor-hero i {
+    color: var(--primario);
+    font-size: 5rem;
+}
+
+.boton {
+    background-color: var(--secundario);
+    padding: 1rem 5rem;
+    display: inline-block; /*ësto para poder agregar margins, por default por ser un enlace "a" está en INLINE, y los INLINE no detecta margins */
+    margin-top: 1rem; /* inline-block si te deja agregar margins */
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    font-weight: 700;
+    border-radius: .5rem;
+    border: none; /* los INPUT por default tienen un border, se lo quitamos aqui */
+}
+
+.boton:hover {
+    cursor: pointer; /* aparece una manita sobre el bton */
+}
+
+/* ------------------------------------------------------------------------------------------ MAIN */
+
+.contenedor {
+    max-width: var(--anchoPantalla);
+    margin: 3rem auto;
+    background-color: white;
+    padding: 3rem;
+    border-radius: 1rem;
+    -webkit-box-shadow: 0px 10px 21px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 10px 21px -8px rgba(0,0,0,0.75);
+    box-shadow: 0px 10px 21px -8px rgba(0,0,0,0.75);
+}
+
+
+.contenedor-servicios {
+    margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+    .contenedor-servicios {
+        display: flex;
+        justify-content: space-between;
+
+    }
+    .servicio {
+        flex: 0 0 calc(33.3% - 1rem); /* primer valor: FACTOR DE CRECIMIENTO, el tercer valor: LA BASE */
+    }
+}
+
+.servicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icono {
+    width: 10rem;
+    height: 10rem;
+    background-color: var(--primario);
+    border-radius: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 3rem;
+    margin-top: 2rem;
+}
+
+form {
+    margin-top: 3rem;
+    background-color: var(--gris);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+form p {
+    margin-top: 0;
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primario);
+}
+
+@media (min-width: 768px) {
+    form {
+        max-width: 800px;
+        margin: 3rem auto 0 auto;
+    }
+    .contenedor-campos {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap; /* para que no se vayan a la derecha los campos */
+    }
+    .campo {
+        flex: 0 0 calc(50% - 1rem);
+    }
+}
+
+.campo {
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.campo label {
+    flex: 0 0 90px; /* esto alinea los LABELS */
+    padding-top: .5rem;
+    color: white;
+}
+
+.campo input {
+    flex: 1;
+    height: 4rem;
+}
+
+.campo textarea {
+    flex: 1; /* este hace que crezca DENTRO de su contenedor nada más */
+    height: 6rem;
+}
+
+.w-100 {
+    flex: 0 0 100%;
+}
+
+.enviar {
+    display: flex;
+    justify-content: end;
+}
